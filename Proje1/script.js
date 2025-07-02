@@ -67,7 +67,7 @@ const app = Vue.createApp({
             this.computerHealth -= attackValue
             this.attackMe()
         },
-        healtMe(){
+        healthMe(){
              this.currentRound++
             const healthValue = getRandomValue(10, 15)
             if(this.myHealth + healthValue > 100){
