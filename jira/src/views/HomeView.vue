@@ -1,24 +1,30 @@
 <template>
-  <div v-if="tasks.length">
-    <div v-for="task in tasks" :key="task.id">
-      <SingleTask :task="task" @delete="handleDelete" @complete="handleComplete"/>
+  <div>
+    <FilterTask :current="current" @filterChange="changeFilter"/>
+    <div v-if="tasks.length">
+      <div v-for="task in filteredTasks" :key="task.id">
+        <SingleTask :task="task" @delete="handleDelete" @complete="handleComplete"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import SingleTask from '@/components/SingleTask.vue';
+import FilterTask from '../components/FilterTask.vue';
 
 
 
 export default {
   name: 'HomeView',
   components: {
-    SingleTask
+    SingleTask,
+    FilterTask
   },
   data() {
     return {
-      tasks:[]
+      tasks:[],
+      current:"all"
     }
   },
   mounted() {
@@ -35,6 +41,20 @@ export default {
         return task.id === id
       })
       myTask.complete = !myTask.complete
+    },
+    changeFilter(filterValue){
+      this.current = filterValue
+    }
+  },
+  computed: {
+    filteredTasks(){
+      if(this.current === "completed"){
+        return this.tasks.filter(task => task.complete)
+      }
+      if(this.current === "continue"){
+        return this.tasks.filter(task => !task.complete)
+      }
+      return this.tasks
     }
   },
 }
