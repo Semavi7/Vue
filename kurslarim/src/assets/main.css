@@ -1,52 +1,95 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-header{
+header {
     background-color: blueviolet;
     color: white;
     position: fixed;
     width: 100%;
 }
 
-header ul{
+header ul {
     margin: 0;
 }
 
-header ul li{
+header ul li {
     font-size: 20px;
 }
 
-.headerContainer{
+.headerContainer {
     display: flex;
     padding: 30px 0px;
     justify-content: space-between;
 }
 
-a{
+a {
     color: white;
     text-decoration: none;
 }
 
-.userAction{
+.userAction {
     list-style-type: none;
 }
 
-.brand{
+.brand {
     font-size: 30px;
     font-weight: 900;
 }
 
-.routerDiv{
+.routerDiv {
     display: flex;
     align-items: center;
 }
 
-.signinContainer{
+.signinContainer {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.signinContainer form {
+    width: 500px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.signinContainer form h1 {
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.signinContainer form input {
+    background: ghostwhite;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.signinContainer .btn-block {
+    background: blueviolet;
+    color: white;
+    width: 100%;
+}
+
+.signinContainer .btn-block:hover {
+    background: white;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+}
+
+.signinContainer .formChange{
+    cursor: pointer;
+    color: blueviolet;
+    font-weight: 100;
+}
+
+.input-alert{
+    color: red;
+    margin-bottom: 15px;
+    font-size: 20px;
 }
