@@ -4,6 +4,9 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { AUTH, DB } from '@/utils/firebase'
 import { getDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import router from '@/router';
+import { useToast } from 'vue-toast-notification'
+
+const $toast = useToast()
 
 const DEFAULT_USER = {
   uid: null,
@@ -27,6 +30,41 @@ export const useUserStore = defineStore('user', {
       this.user = { ...this.user, ...user }
       this.auth = true
     },
+    async signOut(){
+      await signOut(AUTH)
+      this.user = DEFAULT_USER
+      this.auth = false
+      router.push('/')
+    },
+    async autoSignin(uid){
+      const userData = await this.getUserProfile(uid)
+      this.setUser(userData)
+      return true
+    },
+    async getUserProfile(uid){
+      try {
+        const userRef = await getDoc(doc(DB,'users',uid))
+        return userRef.data()
+      } catch (error) {
+        
+      }
+    },
+    async signIn(formData){
+      try {
+        this.loading = true
+        const response = await signInWithEmailAndPassword(AUTH, formData.email, formData.password)
+        
+        const useData = await this.getUserProfile(response.user.uid)
+        this.setUser(useData)
+        
+        router.push('/user/dasboard')
+        $toast.success('Hoşgeldiniz!')
+      } catch (error) {
+        $toast.error('Hatalı Giriş Yaptınız!')
+      } finally {
+        this.loading = false
+      }
+    },
     async register(formData) {
       try {
         this.loading = true
@@ -43,8 +81,9 @@ export const useUserStore = defineStore('user', {
 
         this.setUser(newUser)
         router.push('/user/dasboard')
+        $toast.success('Hoşgeldiniz!')
       } catch (error) {
-
+         $toast.error('Hatalı Kaydolma işlemi Yaptınız!')
       } finally {
         this.loading = false
       }
