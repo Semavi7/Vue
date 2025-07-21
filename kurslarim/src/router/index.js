@@ -6,6 +6,7 @@ import Dasboard from '@/components/user/dasboard/Dasboard.vue'
 import MainPage from '@/components/user/dasboard/MainPage.vue'
 import Profile from '@/components/user/dasboard/Profile.vue'
 import SignIn from '@/components/user/SignIn.vue'
+import { isAuth, isLoggedIn } from '@/composable/auth'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -20,10 +21,12 @@ const router = createRouter({
       path: '/signin',
       name: 'signin',
       component: SignIn,
+      beforeEnter: isLoggedIn
     },
     {
       path: '/user/dasboard',
       name: 'mainpage',
+      beforeEnter: isAuth,
       component: MainPage,children:[
         {path:'',component: Dasboard, name:'dashboard'},
         {path:'profile',component: Profile, name:'profile'},

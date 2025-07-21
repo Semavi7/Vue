@@ -14,3 +14,15 @@ export const firdLoad = () => {
     })
     return {loading}
 }
+
+export const isAuth = () => {
+    let user = AUTH.currentUser
+    if(!user) return '/signin'
+    return true
+}
+
+export const isLoggedIn = () => {
+    let user = AUTH.currentUser
+    if(user) return '/user/dasboard'
+    return true
+}

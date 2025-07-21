@@ -9,6 +9,7 @@ header {
     color: white;
     position: fixed;
     width: 100%;
+    z-index: 32;
 }
 
 header ul {
@@ -97,4 +98,44 @@ a {
 
 .userAuthAction{
     display: flex;
+}
+
+.sidebar{
+    top: 100px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+.sidebar .nav-link{
+    display: flex;
+    color: black;
+    font-weight: 500;
+}
+
+.nav-link.router-link-exact-active{
+    color: blueviolet;
+}
+
+.ourEditor .ProseMirror{
+    border: 1px solid #dee2e6;
+    min-height: 250px;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.ourEditor .btnContainer span{
+    background: blueviolet;
+    padding: 5px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.ourEditor .btnContainer{  
+padding: 10px 0px;
+border-top: 1px solid #dee2e6;
+margin-top: 20px;
 }
