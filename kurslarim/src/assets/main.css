@@ -139,3 +139,7 @@ padding: 10px 0px;
 border-top: 1px solid #dee2e6;
 margin-top: 20px;
 }
+
+tbody, td, tfoot, th, thead, tr{
+    border-color: white !important;
+}

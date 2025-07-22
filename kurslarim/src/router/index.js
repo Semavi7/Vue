@@ -32,7 +32,7 @@ const router = createRouter({
         {path:'profile',component: Profile, name:'profile'},
         {path:'courses',component: Courses, name:'courses'},
         {path:'courses/add',component: AddCourse, name:'courses_add'},
-        {path:'courses/edit',component: EditCourse, name:'courses_edit'}
+        {path:'courses/edit/:id',component: EditCourse, name:'courses_edit'}
       ]
     },
   ],
