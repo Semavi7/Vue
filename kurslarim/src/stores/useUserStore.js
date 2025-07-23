@@ -23,42 +23,55 @@ export const useUserStore = defineStore('user', {
     auth: false
   }),
   getters: {
-    getUserData(state){
+    getUserData(state) {
       return state.user
+    },
+    getUserId(state) {
+      return state.user.uid
     }
   },
   actions: {
+    async updateProfile(formData) {
+      try {
+        await updateDoc(doc(DB, 'users', this.getUserId), { ...formData })
+        this.setUser(formData)
+        $toast.success('Güncelleme Başarılı!')
+      } catch (error) {
+        $toast.error('Güncelleme Başarısız!')
+      }
+
+    },
     setUser(user) {
       this.user = { ...this.user, ...user }
       this.auth = true
     },
-    async signOut(){
+    async signOut() {
       await signOut(AUTH)
       this.user = DEFAULT_USER
       this.auth = false
       router.push('/')
     },
-    async autoSignin(uid){
+    async autoSignin(uid) {
       const userData = await this.getUserProfile(uid)
       this.setUser(userData)
       return true
     },
-    async getUserProfile(uid){
+    async getUserProfile(uid) {
       try {
-        const userRef = await getDoc(doc(DB,'users',uid))
+        const userRef = await getDoc(doc(DB, 'users', uid))
         return userRef.data()
       } catch (error) {
-        
+
       }
     },
-    async signIn(formData){
+    async signIn(formData) {
       try {
         this.loading = true
         const response = await signInWithEmailAndPassword(AUTH, formData.email, formData.password)
-        
+
         const useData = await this.getUserProfile(response.user.uid)
         this.setUser(useData)
-        
+
         router.push('/user/dasboard')
         $toast.success('Hoşgeldiniz!')
       } catch (error) {
@@ -85,7 +98,7 @@ export const useUserStore = defineStore('user', {
         router.push('/user/dasboard')
         $toast.success('Hoşgeldiniz!')
       } catch (error) {
-         $toast.error('Hatalı Kaydolma işlemi Yaptınız!')
+        $toast.error('Hatalı Kaydolma işlemi Yaptınız!')
       } finally {
         this.loading = false
       }

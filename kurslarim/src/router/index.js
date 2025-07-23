@@ -1,4 +1,5 @@
-import Home from '@/components/Home.vue'
+import Home from '@/components/home/Home.vue'
+import Course from '@/components/home/Course.vue'
 import AddCourse from '@/components/user/dasboard/admin/AddCourse.vue'
 import Courses from '@/components/user/dasboard/admin/Courses.vue'
 import EditCourse from '@/components/user/dasboard/admin/EditCourse.vue'
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/course/:id',
+      name: 'course',
+      component: Course,
     },
     {
       path: '/signin',

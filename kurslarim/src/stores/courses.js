@@ -13,7 +13,12 @@ export const UseCourseStore = defineStore('course', {
         adminLastVisible: ''
     }),
     getters: {
-
+        getHomeCourses(state){
+            return state.homeCourses
+        },
+        getHomeSlides(state){
+            return state.homeCourses.slice(0,3)
+        }
     },
     actions: {
         async addCourse(formData) {
@@ -82,7 +87,27 @@ export const UseCourseStore = defineStore('course', {
 
         async updateCourse(id, formData){
             const docRef = doc(DB,'courses',id)
-            await updateDoc(docRef, {...formData})
+            const userStore = useUserStore()
+            const user = userStore.getUserData
+            await updateDoc(docRef, {
+                owner: {
+                    uid: user.uid,
+                    firstname: user.firstname,
+                    lastname: user.lastname
+                },
+                ...formData
+            })
+        },
+
+        async getCourses(){
+            const q = query(coursesCol, orderBy('timestamp','desc'))
+            const querySnapshot = await getDocs(q)
+            const courses = querySnapshot.docs.map((doc=>({
+                id:doc.id,
+                ...doc.data()
+            })))
+            this.homeCourses = courses
+            return this.homeCourses
         }
     }
 })

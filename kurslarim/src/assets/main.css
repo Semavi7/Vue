@@ -84,23 +84,23 @@ a {
     border: 1px solid blueviolet;
 }
 
-.signinContainer .formChange{
+.signinContainer .formChange {
     cursor: pointer;
     color: blueviolet;
     font-weight: 100;
 }
 
-.input-alert{
+.input-alert {
     color: red;
     margin-bottom: 15px;
     font-size: 20px;
 }
 
-.userAuthAction{
+.userAuthAction {
     display: flex;
 }
 
-.sidebar{
+.sidebar {
     top: 100px;
     position: fixed;
     bottom: 0;
@@ -109,24 +109,24 @@ a {
     background-color: whitesmoke;
 }
 
-.sidebar .nav-link{
+.sidebar .nav-link {
     display: flex;
     color: black;
     font-weight: 500;
 }
 
-.nav-link.router-link-exact-active{
+.nav-link.router-link-exact-active {
     color: blueviolet;
 }
 
-.ourEditor .ProseMirror{
+.ourEditor .ProseMirror {
     border: 1px solid #dee2e6;
     min-height: 250px;
     border-radius: 4px;
     padding: 10px;
 }
 
-.ourEditor .btnContainer span{
+.ourEditor .btnContainer span {
     background: blueviolet;
     padding: 5px;
     margin-right: 5px;
@@ -134,12 +134,95 @@ a {
     cursor: pointer;
 }
 
-.ourEditor .btnContainer{  
-padding: 10px 0px;
-border-top: 1px solid #dee2e6;
-margin-top: 20px;
+.ourEditor .btnContainer {
+    padding: 10px 0px;
+    border-top: 1px solid #dee2e6;
+    margin-top: 20px;
 }
 
-tbody, td, tfoot, th, thead, tr{
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
     border-color: white !important;
+}
+
+.sliderMessage {
+    position: relative;
+    height: 750px;
+    background-size: cover !important;
+    width: 100%;
+    background-position: bottom center !important;
+}
+
+.slideContent {
+    position: absolute;
+    background: black;
+    bottom: 20px;
+    width: 50%;
+    color: white;
+    font-size: 25px;
+    padding: 20px;
+    border-radius: 0px 20px 20px 0px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.carouselTop,
+.courseTap {
+    padding-top: 130px;
+}
+
+.courseImg {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    max-width: 600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: 600px) {
+        height: 400px;
+    }
+}
+
+.courseCategory {
+    background: blueviolet;
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    font-size: 25px;
+    font-weight: 200;
+    border-radius: 0px 0px 20px 0px;
+}
+
+.courseContent {
+    margin-top: 50px;
+}
+
+.courseContent h1 {
+    font-size: 60px;
+}
+
+.courseRating {
+    background: blueviolet;
+    display: inline-block;
+    color: white;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 200;
+    border-radius: 20px;
+}
+
+.courseDiv {
+    padding-bottom: 100px;
+}
+
+.courseIC {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
